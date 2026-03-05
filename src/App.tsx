@@ -3,25 +3,41 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
+import BoatsPage from "./pages/BoatsPage";
+import ResortsPage from "./pages/ResortsPage";
+import BoatDetailPage from "./pages/BoatDetailPage";
+import ResortDetailPage from "./pages/ResortDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Helmet>
+          <title>LakeEscape – Book Boat Rides & Lakeside Resorts</title>
+          <meta name="description" content="Book boat rides and lakeside resorts at India's most scenic lake destinations. Shikara rides, speedboats, luxury resorts — all in one place." />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://lakeescape.com" />
+        </Helmet>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/boats" element={<BoatsPage />} />
+            <Route path="/boats/:id" element={<BoatDetailPage />} />
+            <Route path="/resorts" element={<ResortsPage />} />
+            <Route path="/resorts/:id" element={<ResortDetailPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
