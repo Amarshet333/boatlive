@@ -14,16 +14,391 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      boats: {
+        Row: {
+          approved: boolean
+          capacity: number
+          created_at: string
+          description: string | null
+          duration: string
+          features: string[] | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          location: string | null
+          name: string
+          price: number
+          rating: number | null
+          reviews_count: number | null
+          updated_at: string
+          vendor_id: string | null
+        }
+        Insert: {
+          approved?: boolean
+          capacity: number
+          created_at?: string
+          description?: string | null
+          duration: string
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          name: string
+          price: number
+          rating?: number | null
+          reviews_count?: number | null
+          updated_at?: string
+          vendor_id?: string | null
+        }
+        Update: {
+          approved?: boolean
+          capacity?: number
+          created_at?: string
+          description?: string | null
+          duration?: string
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          name?: string
+          price?: number
+          rating?: number | null
+          reviews_count?: number | null
+          updated_at?: string
+          vendor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "boats_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          boat_id: string | null
+          booking_date: string | null
+          booking_time: string | null
+          booking_type: string
+          check_in: string | null
+          check_out: string | null
+          created_at: string
+          guests: number
+          id: string
+          payment_id: string | null
+          payment_status: string
+          resort_id: string | null
+          room_type: string | null
+          service_fee: number
+          status: string
+          total_amount: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          boat_id?: string | null
+          booking_date?: string | null
+          booking_time?: string | null
+          booking_type: string
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string
+          guests?: number
+          id?: string
+          payment_id?: string | null
+          payment_status?: string
+          resort_id?: string | null
+          room_type?: string | null
+          service_fee?: number
+          status?: string
+          total_amount: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          boat_id?: string | null
+          booking_date?: string | null
+          booking_time?: string | null
+          booking_type?: string
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string
+          guests?: number
+          id?: string
+          payment_id?: string | null
+          payment_status?: string
+          resort_id?: string | null
+          room_type?: string | null
+          service_fee?: number
+          status?: string
+          total_amount?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_boat_id_fkey"
+            columns: ["boat_id"]
+            isOneToOne: false
+            referencedRelation: "boats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_resort_id_fkey"
+            columns: ["resort_id"]
+            isOneToOne: false
+            referencedRelation: "resorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      favorites: {
+        Row: {
+          boat_id: string | null
+          created_at: string
+          id: string
+          resort_id: string | null
+          user_id: string
+        }
+        Insert: {
+          boat_id?: string | null
+          created_at?: string
+          id?: string
+          resort_id?: string | null
+          user_id: string
+        }
+        Update: {
+          boat_id?: string | null
+          created_at?: string
+          id?: string
+          resort_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_boat_id_fkey"
+            columns: ["boat_id"]
+            isOneToOne: false
+            referencedRelation: "boats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "favorites_resort_id_fkey"
+            columns: ["resort_id"]
+            isOneToOne: false
+            referencedRelation: "resorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      resorts: {
+        Row: {
+          approved: boolean
+          created_at: string
+          description: string | null
+          facilities: string[] | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          location: string | null
+          name: string
+          price_per_night: number
+          rating: number | null
+          reviews_count: number | null
+          room_types: string[] | null
+          updated_at: string
+          vendor_id: string | null
+        }
+        Insert: {
+          approved?: boolean
+          created_at?: string
+          description?: string | null
+          facilities?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          name: string
+          price_per_night: number
+          rating?: number | null
+          reviews_count?: number | null
+          room_types?: string[] | null
+          updated_at?: string
+          vendor_id?: string | null
+        }
+        Update: {
+          approved?: boolean
+          created_at?: string
+          description?: string | null
+          facilities?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          name?: string
+          price_per_night?: number
+          rating?: number | null
+          reviews_count?: number | null
+          room_types?: string[] | null
+          updated_at?: string
+          vendor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resorts_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          boat_id: string | null
+          comment: string | null
+          created_at: string
+          id: string
+          rating: number
+          resort_id: string | null
+          user_id: string
+        }
+        Insert: {
+          boat_id?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating: number
+          resort_id?: string | null
+          user_id: string
+        }
+        Update: {
+          boat_id?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating?: number
+          resort_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_boat_id_fkey"
+            columns: ["boat_id"]
+            isOneToOne: false
+            referencedRelation: "boats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_resort_id_fkey"
+            columns: ["resort_id"]
+            isOneToOne: false
+            referencedRelation: "resorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vendors: {
+        Row: {
+          approved: boolean
+          business_name: string
+          created_at: string
+          email: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          approved?: boolean
+          business_name: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          approved?: boolean
+          business_name?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "vendor" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +525,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "vendor", "user"],
+    },
   },
 } as const
