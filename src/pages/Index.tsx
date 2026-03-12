@@ -22,10 +22,10 @@ const Index = () => {
               ✨ Book Boats & Resorts in One Place
             </span>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight max-w-4xl mx-auto">
-              Discover the Magic of the <span className="text-gradient-warm">Lakeside</span>
+              Discover the Magic of <span className="text-gradient-warm">Coastal Karnataka</span>
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-              Explore stunning boat rides and handpicked lakeside resorts. Book your perfect getaway in minutes.
+              Explore stunning boat rides and beachside resorts in Honnavar, Murdeshwar & Gokarna. Book your perfect coastal getaway in minutes.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Button variant="hero" size="xl" asChild>
