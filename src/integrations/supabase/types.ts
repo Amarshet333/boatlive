@@ -333,6 +333,57 @@ export type Database = {
           },
         ]
       }
+      seasonal_pricing: {
+        Row: {
+          boat_id: string | null
+          created_at: string
+          end_date: string
+          id: string
+          label: string
+          price_override: number
+          resort_id: string | null
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          boat_id?: string | null
+          created_at?: string
+          end_date: string
+          id?: string
+          label: string
+          price_override: number
+          resort_id?: string | null
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          boat_id?: string | null
+          created_at?: string
+          end_date?: string
+          id?: string
+          label?: string
+          price_override?: number
+          resort_id?: string | null
+          start_date?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seasonal_pricing_boat_id_fkey"
+            columns: ["boat_id"]
+            isOneToOne: false
+            referencedRelation: "boats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "seasonal_pricing_resort_id_fkey"
+            columns: ["resort_id"]
+            isOneToOne: false
+            referencedRelation: "resorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string

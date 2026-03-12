@@ -12,6 +12,12 @@ import BoatDetailPage from "./pages/BoatDetailPage";
 import ResortDetailPage from "./pages/ResortDetailPage";
 import LoginPage from "./pages/LoginPage";
 import MyBookingsPage from "./pages/MyBookingsPage";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminBoats from "./pages/admin/AdminBoats";
+import AdminResorts from "./pages/admin/AdminResorts";
+import AdminBookings from "./pages/admin/AdminBookings";
+import AdminRevenue from "./pages/admin/AdminRevenue";
+import AdminPricing from "./pages/admin/AdminPricing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,10 +28,10 @@ const App = () => (
       <AuthProvider>
         <TooltipProvider>
           <Helmet>
-            <title>LakeEscape – Book Boat Rides & Lakeside Resorts</title>
-            <meta name="description" content="Book boat rides and lakeside resorts at India's most scenic lake destinations. Shikara rides, speedboats, luxury resorts — all in one place." />
+            <title>CoastalEscape – Book Boat Rides & Resorts in Honnavar, Murdeshwar & Gokarna</title>
+            <meta name="description" content="Book boat rides and beachside resorts in Honnavar, Murdeshwar & Gokarna. Speedboats, island hopping, coastal cruises & luxury resorts — all in one place." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="canonical" href="https://lakeescape.com" />
+            <link rel="canonical" href="https://boatlive.lovable.app" />
           </Helmet>
           <Toaster />
           <Sonner />
@@ -38,6 +44,12 @@ const App = () => (
               <Route path="/resorts/:id" element={<ResortDetailPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/my-bookings" element={<MyBookingsPage />} />
+              <Route path="/admin" element={<AdminOverview />} />
+              <Route path="/admin/boats" element={<AdminBoats />} />
+              <Route path="/admin/resorts" element={<AdminResorts />} />
+              <Route path="/admin/bookings" element={<AdminBookings />} />
+              <Route path="/admin/revenue" element={<AdminRevenue />} />
+              <Route path="/admin/pricing" element={<AdminPricing />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
