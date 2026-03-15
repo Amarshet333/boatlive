@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Ship, Hotel, Menu, X, User, Calendar, LogOut } from "lucide-react";
-import { useState } from "react";
+import { Ship, Hotel, Menu, X, User, Calendar, LogOut, LayoutDashboard } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
