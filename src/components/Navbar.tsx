@@ -68,6 +68,9 @@ const Navbar = () => {
           {user ? (
             <>
               <Link to="/my-bookings" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📋 My Bookings</Link>
+              {isVendor && (
+                <Link to="/vendor" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📊 Vendor Panel</Link>
+              )}
               <Button variant="hero" size="sm" className="w-full" onClick={() => { signOut(); setOpen(false); }}>
                 <LogOut className="h-4 w-4" /> Sign Out
               </Button>
