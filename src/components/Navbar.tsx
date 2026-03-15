@@ -1,14 +1,22 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Ship, Hotel, Menu, X, User, Calendar, LogOut } from "lucide-react";
-import { useState } from "react";
+import { Ship, Hotel, Menu, X, User, Calendar, LogOut, LayoutDashboard } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
   const { user, signOut } = useAuth();
+  const [isVendor, setIsVendor] = useState(false);
+
+  useEffect(() => {
+    if (!user) { setIsVendor(false); return; }
+    supabase.from("vendors").select("id, approved").eq("user_id", user.id).maybeSingle()
+      .then(({ data }) => setIsVendor(!!data?.approved));
+  }, [user]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHome ? "bg-foreground/20 backdrop-blur-md" : "bg-card shadow-card"}`}>
@@ -32,6 +40,11 @@ const Navbar = () => {
               <Link to="/my-bookings" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
                 <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> My Bookings</span>
               </Link>
+              {isVendor && (
+                <Link to="/vendor" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
+                  <span className="flex items-center gap-1"><LayoutDashboard className="h-4 w-4" /> Vendor Panel</span>
+                </Link>
+              )}
               <Button variant={isHome ? "hero" : "default"} size="sm" onClick={() => signOut()}>
                 <LogOut className="h-4 w-4" /> Sign Out
               </Button>
@@ -55,6 +68,9 @@ const Navbar = () => {
           {user ? (
             <>
               <Link to="/my-bookings" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📋 My Bookings</Link>
+              {isVendor && (
+                <Link to="/vendor" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📊 Vendor Panel</Link>
+              )}
               <Button variant="hero" size="sm" className="w-full" onClick={() => { signOut(); setOpen(false); }}>
                 <LogOut className="h-4 w-4" /> Sign Out
               </Button>
