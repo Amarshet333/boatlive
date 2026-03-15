@@ -18,6 +18,10 @@ import AdminResorts from "./pages/admin/AdminResorts";
 import AdminBookings from "./pages/admin/AdminBookings";
 import AdminRevenue from "./pages/admin/AdminRevenue";
 import AdminPricing from "./pages/admin/AdminPricing";
+import VendorOverview from "./pages/vendor/VendorOverview";
+import VendorBoats from "./pages/vendor/VendorBoats";
+import VendorResorts from "./pages/vendor/VendorResorts";
+import VendorBookings from "./pages/vendor/VendorBookings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +54,10 @@ const App = () => (
               <Route path="/admin/bookings" element={<AdminBookings />} />
               <Route path="/admin/revenue" element={<AdminRevenue />} />
               <Route path="/admin/pricing" element={<AdminPricing />} />
+              <Route path="/vendor" element={<VendorOverview />} />
+              <Route path="/vendor/boats" element={<VendorBoats />} />
+              <Route path="/vendor/resorts" element={<VendorResorts />} />
+              <Route path="/vendor/bookings" element={<VendorBookings />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
