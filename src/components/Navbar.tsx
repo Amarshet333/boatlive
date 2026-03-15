@@ -10,6 +10,13 @@ const Navbar = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const { user, signOut } = useAuth();
+  const [isVendor, setIsVendor] = useState(false);
+
+  useEffect(() => {
+    if (!user) { setIsVendor(false); return; }
+    supabase.from("vendors").select("id, approved").eq("user_id", user.id).maybeSingle()
+      .then(({ data }) => setIsVendor(!!data?.approved));
+  }, [user]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHome ? "bg-foreground/20 backdrop-blur-md" : "bg-card shadow-card"}`}>
