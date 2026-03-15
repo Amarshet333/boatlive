@@ -40,6 +40,11 @@ const Navbar = () => {
               <Link to="/my-bookings" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
                 <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> My Bookings</span>
               </Link>
+              {isVendor && (
+                <Link to="/vendor" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
+                  <span className="flex items-center gap-1"><LayoutDashboard className="h-4 w-4" /> Vendor Panel</span>
+                </Link>
+              )}
               <Button variant={isHome ? "hero" : "default"} size="sm" onClick={() => signOut()}>
                 <LogOut className="h-4 w-4" /> Sign Out
               </Button>
