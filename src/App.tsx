@@ -18,6 +18,7 @@ import AdminResorts from "./pages/admin/AdminResorts";
 import AdminBookings from "./pages/admin/AdminBookings";
 import AdminRevenue from "./pages/admin/AdminRevenue";
 import AdminPricing from "./pages/admin/AdminPricing";
+import VendorRegisterPage from "./pages/VendorRegisterPage";
 import VendorOverview from "./pages/vendor/VendorOverview";
 import VendorBoats from "./pages/vendor/VendorBoats";
 import VendorResorts from "./pages/vendor/VendorResorts";
