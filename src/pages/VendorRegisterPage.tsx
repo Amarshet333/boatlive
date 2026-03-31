@@ -64,8 +64,8 @@ const VendorRegisterPage = () => {
       <>
         <Navbar />
         <main className="pt-24 pb-16 container mx-auto px-4 max-w-md text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+          <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto">
+            <CheckCircle className="h-8 w-8 text-accent" />
           </div>
           <h1 className="font-display text-2xl font-bold text-foreground">Application Submitted!</h1>
           <p className="text-muted-foreground">Your vendor application is under review. You'll get access to the Vendor Dashboard once approved by our team.</p>
