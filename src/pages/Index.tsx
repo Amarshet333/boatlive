@@ -6,9 +6,22 @@ import BoatCard from "@/components/BoatCard";
 import ResortCard from "@/components/ResortCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { boats, resorts } from "@/data/listings";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import type { Tables } from "@/integrations/supabase/types";
+
+type Boat = Tables<"boats">;
+type Resort = Tables<"resorts">;
 
 const Index = () => {
+  const [boats, setBoats] = useState<Boat[]>([]);
+  const [resorts, setResorts] = useState<Resort[]>([]);
+
+  useEffect(() => {
+    supabase.from("boats").select("*").eq("is_active", true).eq("approved", true).order("rating", { ascending: false }).limit(6).then(({ data }) => setBoats(data ?? []));
+    supabase.from("resorts").select("*").eq("is_active", true).eq("approved", true).order("rating", { ascending: false }).limit(6).then(({ data }) => setResorts(data ?? []));
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -69,11 +82,15 @@ const Index = () => {
                 <Link to="/boats">View All <ArrowRight className="h-4 w-4" /></Link>
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {boats.map((boat) => (
-                <BoatCard key={boat.id} boat={boat} />
-              ))}
-            </div>
+            {boats.length === 0 ? (
+              <p className="text-muted-foreground text-center py-8">No boats available yet.</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {boats.map((boat) => (
+                  <BoatCard key={boat.id} boat={boat} />
+                ))}
+              </div>
+            )}
             <div className="mt-8 text-center md:hidden">
               <Button variant="hero" asChild>
                 <Link to="/boats">View All Boats <ArrowRight className="h-4 w-4" /></Link>
@@ -94,11 +111,15 @@ const Index = () => {
                 <Link to="/resorts">View All <ArrowRight className="h-4 w-4" /></Link>
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {resorts.map((resort) => (
-                <ResortCard key={resort.id} resort={resort} />
-              ))}
-            </div>
+            {resorts.length === 0 ? (
+              <p className="text-muted-foreground text-center py-8">No resorts available yet.</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {resorts.map((resort) => (
+                  <ResortCard key={resort.id} resort={resort} />
+                ))}
+              </div>
+            )}
             <div className="mt-8 text-center md:hidden">
               <Button variant="ocean" asChild>
                 <Link to="/resorts">View All Resorts <ArrowRight className="h-4 w-4" /></Link>
