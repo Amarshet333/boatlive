@@ -18,6 +18,7 @@ import AdminResorts from "./pages/admin/AdminResorts";
 import AdminBookings from "./pages/admin/AdminBookings";
 import AdminRevenue from "./pages/admin/AdminRevenue";
 import AdminPricing from "./pages/admin/AdminPricing";
+import VendorRegisterPage from "./pages/VendorRegisterPage";
 import VendorOverview from "./pages/vendor/VendorOverview";
 import VendorBoats from "./pages/vendor/VendorBoats";
 import VendorResorts from "./pages/vendor/VendorResorts";
@@ -54,6 +55,7 @@ const App = () => (
               <Route path="/admin/bookings" element={<AdminBookings />} />
               <Route path="/admin/revenue" element={<AdminRevenue />} />
               <Route path="/admin/pricing" element={<AdminPricing />} />
+              <Route path="/become-vendor" element={<VendorRegisterPage />} />
               <Route path="/vendor" element={<VendorOverview />} />
               <Route path="/vendor/boats" element={<VendorBoats />} />
               <Route path="/vendor/resorts" element={<VendorResorts />} />

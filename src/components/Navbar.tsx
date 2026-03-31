@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Ship, Hotel, Menu, X, User, Calendar, LogOut, LayoutDashboard } from "lucide-react";
+import { Ship, Hotel, Menu, X, User, Calendar, LogOut, LayoutDashboard, Store } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -40,9 +40,13 @@ const Navbar = () => {
               <Link to="/my-bookings" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
                 <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> My Bookings</span>
               </Link>
-              {isVendor && (
+              {isVendor ? (
                 <Link to="/vendor" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
                   <span className="flex items-center gap-1"><LayoutDashboard className="h-4 w-4" /> Vendor Panel</span>
+                </Link>
+              ) : (
+                <Link to="/become-vendor" className={`text-sm font-medium transition-colors hover:text-primary ${isHome ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-muted-foreground"}`}>
+                  <span className="flex items-center gap-1"><Store className="h-4 w-4" /> Become a Vendor</span>
                 </Link>
               )}
               <Button variant={isHome ? "hero" : "default"} size="sm" onClick={() => signOut()}>
@@ -68,8 +72,10 @@ const Navbar = () => {
           {user ? (
             <>
               <Link to="/my-bookings" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📋 My Bookings</Link>
-              {isVendor && (
+              {isVendor ? (
                 <Link to="/vendor" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">📊 Vendor Panel</Link>
+              ) : (
+                <Link to="/become-vendor" onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground py-2">🏪 Become a Vendor</Link>
               )}
               <Button variant="hero" size="sm" className="w-full" onClick={() => { signOut(); setOpen(false); }}>
                 <LogOut className="h-4 w-4" /> Sign Out
